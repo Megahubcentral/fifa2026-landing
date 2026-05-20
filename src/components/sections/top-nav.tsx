@@ -1,17 +1,62 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useAuth } from "@/hooks/use-auth";
 import { BRANDING } from "@/lib/branding";
 
 export function TopNav() {
+  const { user, loading } = useAuth();
+  const loggedIn = !loading && !!user;
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     document.body.classList.toggle("no-scroll", menuOpen);
     return () => document.body.classList.remove("no-scroll");
   }, [menuOpen]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const desktopNav = loggedIn ? (
+    <nav className="hidden items-center gap-5 text-[11px] uppercase tracking-[0.2em] text-white/70 md:flex">
+      <Link href="/" className="transition hover:text-white">Inicio</Link>
+      <Link href="/transmision" className="transition hover:text-white">Transmisión</Link>
+      <Link href="/perfil" className="transition hover:text-white">Perfil</Link>
+    </nav>
+  ) : (
+    <nav className="hidden items-center gap-4 text-[11px] uppercase tracking-[0.2em] text-white/70 md:flex">
+      <a href="#live" className="transition hover:text-white">Live</a>
+      <a href="#" className="transition hover:text-white">Fixtures</a>
+      <a href="#" className="transition hover:text-white">Highlights</a>
+      <Link
+        href="/suscribete"
+        className="rounded-full bg-electric px-4 py-1.5 text-xs font-semibold text-midnight transition hover:brightness-110"
+      >
+        Suscríbete
+      </Link>
+    </nav>
+  );
+
+  const mobileItems = loggedIn
+    ? [
+        { label: "Inicio", href: "/" },
+        { label: "Transmisión", href: "/transmision" },
+        { label: "Perfil", href: "/perfil" },
+      ]
+    : [
+        { label: "Live", href: "#live" },
+        { label: "Fixtures", href: "#" },
+        { label: "Highlights", href: "#" },
+        { label: "Suscríbete", href: "/suscribete" },
+      ];
 
   return (
     <>
@@ -20,23 +65,32 @@ export function TopNav() {
         style={{ paddingTop: "max(env(safe-area-inset-top), 0px)" }}
       >
         <div className="absolute inset-x-0 top-0 h-0.5 bg-[#d71920]" />
-        <div className="section-shell flex h-16 items-center justify-between">
-          <a href="#" className="group flex items-center gap-3">
-            <motion.div whileHover={{ scale: 1.03 }} className="glass relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl border border-white/20">
-              <Image src={BRANDING.pioIcon} alt="Pio Deportes icon" width={28} height={28} className="h-7 w-7 object-contain" priority />
-              <div className="absolute inset-0 opacity-0 transition group-hover:opacity-100 bg-[radial-gradient(circle,rgba(124,226,255,0.35),transparent_65%)]" />
-            </motion.div>
-            <motion.div whileHover={{ x: 2 }} className="hidden h-8 w-44 items-center md:flex">
-              <Image src={BRANDING.pioLogoWhite} alt="Pio Deportes" width={180} height={36} className="h-8 w-auto object-contain" priority />
-            </motion.div>
-            <span className="rounded-full border border-red-300/35 bg-red-500/10 px-2 py-0.5 text-[10px] uppercase tracking-[0.18em] text-red-300 md:hidden">Live</span>
-          </a>
+        <div className="section-shell flex h-16 items-center">
+          <AnimatePresence>
+            {scrolled && (
+              <motion.div
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -16 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <Link href="/" className="group flex items-center gap-3">
+                  <motion.div whileHover={{ scale: 1.03 }} className="glass relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl border border-white/20">
+                    <Image src={BRANDING.pioIcon} alt="Pio Deportes icon" width={28} height={28} className="h-7 w-7 object-contain" priority />
+                    <div className="absolute inset-0 opacity-0 transition group-hover:opacity-100 bg-[radial-gradient(circle,rgba(124,226,255,0.35),transparent_65%)]" />
+                  </motion.div>
+                  <motion.div whileHover={{ x: 2 }} className="hidden h-8 w-44 items-center md:flex">
+                    <Image src={BRANDING.pioLogoWhite} alt="Pio Deportes" width={180} height={36} className="h-8 w-auto object-contain" priority />
+                  </motion.div>
+                  <span className="rounded-full border border-red-300/35 bg-red-500/10 px-2 py-0.5 text-[10px] uppercase tracking-[0.18em] text-red-300 md:hidden">Live</span>
+                </Link>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-          <nav className="hidden items-center gap-4 text-[11px] uppercase tracking-[0.2em] text-white/70 md:flex">
-            <a href="#live" className="transition hover:text-white">Live</a>
-            <a href="#" className="transition hover:text-white">Fixtures</a>
-            <a href="#" className="transition hover:text-white">Highlights</a>
-          </nav>
+          <div className={`flex flex-1 ${scrolled ? "justify-end" : "justify-center"}`}>
+            {desktopNav}
+          </div>
 
           <button
             onClick={() => setMenuOpen((v) => !v)}
@@ -74,15 +128,15 @@ export function TopNav() {
                 </button>
               </div>
               <div className="space-y-2">
-                {["Live", "Fixtures", "Highlights", "News"].map((item) => (
-                  <a
-                    key={item}
-                    href={item === "Live" ? "#live" : "#"}
+                {mobileItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
                     onClick={() => setMenuOpen(false)}
                     className="block rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium tracking-[0.01em] text-white/90 transition hover:border-electric/45 hover:bg-white/[0.06]"
                   >
-                    {item}
-                  </a>
+                    {item.label}
+                  </Link>
                 ))}
               </div>
             </motion.div>
