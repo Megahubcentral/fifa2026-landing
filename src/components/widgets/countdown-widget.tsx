@@ -23,7 +23,7 @@ export function CountdownWidget() {
   }, [now]);
 
   return (
-    <section className="section-shell py-8 sm:py-10">
+    <section id="countdown" className="section-shell py-8 sm:py-10">
       <div className="glass-heavy rounded-3xl border border-sky-200/70 p-5 sm:p-6">
         <div className="mb-4 flex items-center justify-between">
           <p className="text-xs uppercase tracking-[0.2em] text-blue-900">Road to FIFA World Cup 2026</p>

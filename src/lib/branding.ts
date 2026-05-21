@@ -1,4 +1,5 @@
 export const BRANDING = {
+  navLogoCombined: "/LOGOS/logo-pio-fifa.png?v=3",
   pioIcon: "/ICON/FAV%20ICON%20LOGO%20PIO%20DEPORTES-06.png",
   pioIconAlt: "/ICON/FAV%20ICON%20LOGO%20PIO%20DEPORTES-05.png",
   pioLogoWhite: "/LOGOS/LOGO%20PIO%20DEPORTES%20(RGB)%20LETRA%20BLANCA-01.png",

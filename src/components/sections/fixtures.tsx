@@ -7,7 +7,7 @@ import { fixtures } from "@/data/landing-content";
 
 export function FixturesSection() {
   return (
-    <section className="section-shell py-14 sm:py-20">
+    <section id="fixtures" className="section-shell py-14 sm:py-20">
       <SectionTitle kicker="Fixtures" title="Partidos y horarios" subtitle="Cards con lectura instantanea, badges de estado y jerarquia visual tipo broadcast." />
       <div className="grid gap-4 lg:grid-cols-3">
         {fixtures.map((m, index) => (

@@ -1,51 +1,38 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { SuscribeteMarketing } from "@/components/sections/suscribete-marketing";
 import { CombinedAuthForm } from "@/components/auth/combined-auth-form";
-import { BRANDING } from "@/lib/branding";
+import { BrandLogoMark } from "@/components/ui/brand-logo-mark";
 
 export default function SuscribetePage() {
   return (
     <main>
-      <header className="theater-dark fixed inset-x-0 top-0 z-40">
-        <div className="section-shell grid h-[120px] grid-cols-3 items-center">
-          <div />
+      <div className="relative">
+        <header className="theater-dark absolute inset-x-0 top-0 z-30 overflow-visible">
+          <div className="section-shell relative grid h-[7.5rem] grid-cols-[1fr_auto_1fr] items-center overflow-visible sm:h-[8.5rem]">
+            <div />
 
-          <Link href="/" className="flex justify-center">
-            <div className="flex items-center gap-2.5">
-              <Image
-                src={BRANDING.pioIcon}
-                alt="Pio Deportes"
-                width={28}
-                height={28}
-                className="h-7 w-7 object-contain"
-              />
-              <Image
-                src={BRANDING.pioLogoWhite}
-                alt="Pio Deportes"
-                width={130}
-                height={26}
-                className="hidden h-6 w-auto object-contain sm:block"
-              />
+            <div className="relative h-full w-[10.5rem] shrink-0 justify-self-center sm:w-[12.5rem] md:w-[15rem]">
+              <div className="absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2">
+                <BrandLogoMark variant="crest" showRedBackground={false} />
+              </div>
             </div>
-          </Link>
 
-          <div className="flex justify-end">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-1.5 rounded-full border border-white/25 px-4 py-1.5 text-[11px] uppercase tracking-[0.18em] text-white/80 transition hover:border-white/50 hover:text-white"
-            >
-              <span className="text-sm">←</span>
-              Regresar
-            </Link>
+            <div className="relative z-[60] flex justify-end">
+              <Link
+                href="/"
+                className="relative z-[60] inline-flex items-center gap-1.5 rounded-full border border-white/25 px-4 py-1.5 text-[11px] uppercase tracking-[0.18em] text-white/50 transition-colors duration-200 hover:border-white/40 hover:text-white"
+              >
+                <span className="text-sm">←</span>
+                Regresar
+              </Link>
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      <SuscribeteMarketing />
+        <SuscribeteMarketing />
+      </div>
 
       <section
         id="registro"

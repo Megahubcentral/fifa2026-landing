@@ -49,7 +49,7 @@ export function CombinedAuthForm() {
   return (
     <div className="relative mx-auto max-w-5xl">
       <Reveal>
-        <h2 className="mb-2 text-center text-4xl font-semibold tracking-[-0.02em]">
+        <h2 className="mb-2 text-center text-white/100 text-4xl font-semibold tracking-[-0.02em]">
           Comienza ahora
         </h2>
         <p className="mb-12 text-center text-white/60">

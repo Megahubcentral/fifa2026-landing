@@ -6,11 +6,11 @@ import { sponsors } from "@/data/landing-content";
 
 export function SponsorBar() {
   return (
-    <section className="section-shell py-12 sm:py-16">
+    <section id="sponsors" className="section-shell py-12 sm:py-16">
       <Reveal>
         <div className="glass-heavy rounded-3xl p-5 sm:p-6">
           <div className="mb-4 flex items-center justify-between text-[11px] uppercase tracking-[0.22em] text-white/60">
-            <span>Main Sponsors</span>
+            <span>Logos marcas patrocinadoras</span>
             <span>Broadcast Partner Integration</span>
           </div>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">

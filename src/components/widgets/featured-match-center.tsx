@@ -3,15 +3,16 @@
 import { motion } from "framer-motion";
 import { featuredMatch as initialMatch } from "@/data/worldcup-widgets";
 import { useMatchCenter } from "@/hooks/useFootballData";
+import { scrollToSection } from "@/lib/scroll-to-section";
 
 export function FeaturedMatchCenter() {
   const { data, loading, source } = useMatchCenter(initialMatch);
 
   return (
-    <section className="section-shell py-6 sm:py-8">
+    <section id="match-center" className="section-shell py-6 sm:py-8">
       <motion.div whileHover={{ y: -4 }} className="glass-heavy rounded-3xl border border-sky-200/80 bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(235,246,255,0.9))] p-5 sm:p-6">
         <div className="mb-4 flex items-center justify-between">
-          <p className="text-xs uppercase tracking-[0.2em] text-blue-900">Featured Match Center</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-blue-900">Featured Match Center (USA vs Mexico)</p>
           <div className="flex items-center gap-2">
             <span className="rounded-full border border-slate-300 bg-white px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-slate-700">{data.sponsor}</span>
             <span className={`rounded-full px-2 py-1 text-[10px] uppercase tracking-[0.18em] ${source === "live" ? "bg-emerald-100 text-emerald-700" : "bg-slate-100 text-slate-600"}`}>
@@ -33,7 +34,13 @@ export function FeaturedMatchCenter() {
             <p className="mt-1 text-sm font-semibold text-slate-800">Kickoff: {data.kickoff}</p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <button className="rounded-full bg-[#22B7FF] px-5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#061224]">Watch Live</button>
+            <button
+              type="button"
+              onClick={() => scrollToSection("live")}
+              className="rounded-full bg-[#22B7FF] px-5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#061224]"
+            >
+              Watch Live
+            </button>
             <button className="rounded-full border border-slate-300 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-800">Match Center</button>
           </div>
         </div>

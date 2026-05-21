@@ -11,19 +11,23 @@ export function GallerySection() {
   const [active, setActive] = useState<string | null>(null);
 
   return (
-    <section className="section-shell py-14 sm:py-20">
-      <SectionTitle kicker="Multimedia" title="Galeria inmersiva" subtitle="Carrusel horizontal optimizado para touch con lightbox y presentacion tipo social studio." />
+    <section id="gallery" className="section-shell py-14 sm:py-20">
+      <SectionTitle
+        kicker="Multimedia"
+        title="Galería inmersiva FIFA 2026"
+        subtitle="Tres paneles destacados en desktop con lightbox para exploración inmersiva."
+      />
       <Reveal>
-        <div className="flex snap-x gap-4 overflow-x-auto pb-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {gallery.map((img, index) => (
             <motion.button
               key={img}
               whileHover={{ y: -4 }}
               transition={{ duration: 0.25 }}
-              className="group relative h-56 min-w-[82%] snap-center overflow-hidden rounded-3xl border border-white/10 sm:min-w-[46%] lg:min-w-[32%]"
+              className="group relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10"
               onClick={() => setActive(img)}
             >
-              <Image src={img} alt={`Gallery slide ${index + 1}`} fill className="object-cover transition duration-700 group-hover:scale-105" />
+              <Image src={img} alt={`Galería FIFA 2026 ${index + 1}`} fill className="object-cover transition duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
             </motion.button>
           ))}

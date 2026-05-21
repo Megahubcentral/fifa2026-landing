@@ -8,6 +8,13 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4.75rem;
+}
+
+@media (min-width: 640px) {
+  html {
+    scroll-padding-top: 4.75rem;
+  }
 }
 
 body {
@@ -113,12 +120,16 @@ body {
 .theater-dark .text-white\/80,
 .theater-dark .text-white\/75,
 .theater-dark .text-white\/70 { color: rgba(255,255,255,0.8) !important; }
+.theater-dark .text-white\/50 { color: rgba(255, 255, 255, 0.5) !important; }
 .theater-dark .text-white\/65,
 .theater-dark .text-white\/60,
 .theater-dark .text-white\/55,
-.theater-dark .text-white\/50,
 .theater-dark .text-white\/45,
 .theater-dark .text-white\/40 { color: rgba(255,255,255,0.6) !important; }
+
+.theater-dark .hover\:text-white:hover {
+  color: #fff !important;
+}
 
 @keyframes drift {
   0% { transform: translateY(0px); }

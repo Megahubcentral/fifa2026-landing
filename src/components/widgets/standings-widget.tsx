@@ -8,9 +8,9 @@ export function StandingsWidget() {
   const { data, loading, source } = useStandings(initialStandings);
 
   return (
-    <section className="section-shell py-12 sm:py-16">
+    <section id="standings" className="section-shell py-12 sm:py-16">
       <div className="mb-2 flex items-center justify-between">
-        <SectionTitle kicker="Table" title="Posiciones" subtitle="Standings presented by Sponsor" />
+        <SectionTitle kicker="Table" title="Tabla de posiciones" subtitle="Presented by Sponsor" />
         <span className={`rounded-full px-2 py-1 text-[10px] uppercase tracking-[0.18em] ${source === "live" ? "bg-emerald-100 text-emerald-700" : "bg-slate-100 text-slate-600"}`}>
           {source === "live" ? "Live data" : "Demo data"}
         </span>

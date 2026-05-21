@@ -11,6 +11,7 @@ export function LiveMatchTicker() {
     <section className="section-shell py-4 sm:py-5">
       <div className="theater-dark glass-heavy relative overflow-hidden rounded-2xl border border-white/20 bg-[#0a1a33]/85 px-4 py-3">
         <div className="mb-2 flex items-center justify-between">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-white/85">Score del partido</span>
           <span className="rounded-full border border-white/25 bg-white/10 px-2 py-0.5 text-[10px] uppercase tracking-[0.18em] text-white/85">
             Presented by Sponsor
           </span>

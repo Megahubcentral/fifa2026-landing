@@ -75,6 +75,39 @@ export const news = [
 export const gallery = [
   "https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1200&q=80",
   "https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1517747614396-d21a78b850e8?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1543357480-c60d40007a3f?auto=format&fit=crop&w=1200&q=80"
+  "https://images.unsplash.com/photo-1517747614396-d21a78b850e8?auto=format&fit=crop&w=1200&q=80"
+];
+
+export type MatchSummary = {
+  id: string;
+  title: string;
+  duration: string;
+  image: string;
+};
+
+export const matchSummaries: MatchSummary[] = [
+  {
+    id: "s1",
+    title: "USA 2 - 1 Mexico: resumen completo",
+    duration: "8:42",
+    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    id: "s2",
+    title: "Argentina vs Brazil: mejores jugadas",
+    duration: "6:15",
+    image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    id: "s3",
+    title: "Spain vs France: goles del partido",
+    duration: "5:30",
+    image: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    id: "s4",
+    title: "Semifinal: momentos clave en 4K",
+    duration: "12:08",
+    image: "https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=1400&q=80"
+  }
 ];
